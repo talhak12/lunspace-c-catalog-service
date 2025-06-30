@@ -29,6 +29,7 @@ const priceConfigurationSchema=new mongoose.Schema<PriceConfiguration>({
 
   priceType:{
     type:String,
+    enum:['base','additional'],
     required:true
   },
 
