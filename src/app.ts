@@ -1,10 +1,12 @@
+import config from "config"
 import express, { Request, Response } from "express";
 import { globalErrorHandler } from "./common/middlewares/globalErrorHandler";
 
 const app = express();
 
 app.get("/", (req: Request, res: Response) => {
-    res.send("Hello World!");
+    //res.send(config.get("server.port"));
+    res.json({message:config.get("server.port")});
 });
 
 app.use(globalErrorHandler);
