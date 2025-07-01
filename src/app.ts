@@ -1,11 +1,14 @@
 import config from "config"
 import express, { Request, Response } from "express";
+import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./common/middlewares/globalErrorHandler";
 import CategoryRouter from './category/category-router'
+
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
     //res.send(config.get("server.port"));
