@@ -23,14 +23,17 @@ export class CategoryController{
 
     const {name,priceConfiguration,attributes}=req.body;
 
-    //Call the service
-    const category=await this.categoryService.create({
+    
+    
+      const category=await this.categoryService.create({
       name,priceConfiguration,attributes
     });
     console.log(this.logger);
-    this.logger.info(`Created category`)
-
     res.json({id:category._id});
+    
+    
+    //Call the service
+    this.logger.info(`Created category`)
   }
 
 }
