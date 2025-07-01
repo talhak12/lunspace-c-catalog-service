@@ -14,12 +14,14 @@ export default [
   body('priceConfiguration.*.priceType')
   .exists()
   .withMessage('Price type is required')
-  .custom((value)=>{
-    const validKeys=['base','additional']
+  .custom((value:"base" | "aditional")=>{
+    console.log(value);
+    const validKeys=["base","aditional"]
     if(!validKeys.includes(value))
     {
       throw new Error(`${value} is invalid`);
     }
+    return true;
   }),
 
   body('attributes')
