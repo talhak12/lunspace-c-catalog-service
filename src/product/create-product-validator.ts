@@ -19,17 +19,17 @@ export default [
   .exists()
   .withMessage('Attributes field is required'),
 
-  body('tenantid')
+  body('tenantId')
   .exists()
   .withMessage('Tenant id field is required'),
 
-  body('categoryid')
+  body('categoryId')
   .exists()
   .withMessage('Category id field is required'),
 
-  body('image').custom((value,{req})=>{
+  /*body('image').custom((value,{req})=>{
       if(!req.files) throw new Error('Product image is required');
       return true;
-  }),
+  }),*/
 ];
 
