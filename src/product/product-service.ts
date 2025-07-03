@@ -26,5 +26,11 @@ export class ProductService{
     )
   }
 
+  async getProduct(productId:string) : Promise<Product | null>
+  {
+    return await productModel.findOne({_id:productId});
+    
+  }
+
 
 }

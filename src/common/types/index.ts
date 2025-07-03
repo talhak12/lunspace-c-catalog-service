@@ -9,5 +9,6 @@ export type AuthCookie={
     sub: string;
     role: string;
     id?: string;
+    tenant:string;
   };
 }
