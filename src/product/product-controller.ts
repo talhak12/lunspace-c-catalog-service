@@ -92,7 +92,7 @@ export class ProductController
 
     if(req.files?.image)
     {
-      oldImage=await this.productService.getProductImage(productId);
+      oldImage=product.image;
 
       const image=req.files!.image as UploadedFile;
       imageName=uuidv4();
@@ -125,7 +125,7 @@ export class ProductController
 
     res.json({id:productId});
     
-        
+
   }
 
 
