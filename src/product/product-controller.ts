@@ -163,13 +163,23 @@ export class ProductController
       filters,
       {
         page:req.query.page ? parseInt(req.query.page as string) : 1,
-        limit:req.query.limit ? parseInt(req.query.limit as string) : 1,
+        limit:req.query.limit ? parseInt(req.query.limit as string) : 10,
+      });
 
-      }
+   
+      const finalProducts=(products.data as Product[]).
+      map((product:Product)=>{
+
+      return {
+        ...product,
+        image:this.storage.getObjectUri(product.image),
+      };
+
+    })
     
-    );
-
-    res.json({products})
+    
+    res.json({data:finalProducts,total:products.total,
+      pageSize:products.limit,currentPage:products.page});
 
   }
 

@@ -1,6 +1,7 @@
 import { DeleteObjectCommand, DeleteObjectCommandOutput, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { FileData, FileStorage } from "../types/storage";
 import  config  from 'config'
+import createHttpError from "http-errors";
 
 export class S3Storage implements FileStorage{
   
@@ -36,8 +37,18 @@ export class S3Storage implements FileStorage{
 
     return await this.client.send(new DeleteObjectCommand(objectParams));
   }
-  getObjectUri(filename: string): void {
-    throw new Error("Method not implemented.");
+  getObjectUri(filename: string): string {
+
+    const bucket=config.get("s3.bucket");
+    const region=config.get("s3.region");
+
+    if(typeof bucket==="string" && typeof region==="string")
+    {
+       return `https://${bucket}.s3.${region}.amazonaws.com/${filename}`
+    }
+    const error=createHttpError(500,"Invalid S3 configuration");
+    throw error;
+  
   }
 
   
